@@ -1,0 +1,33 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <div class="info-title">
+          <h2>Maturity Level</h2>
+        </div>
+        <div class="tile-body">
+          <app-functionality-buttons [addLabel]="'Add Maturity Level'"
+                                     [addLink]="'home/cma-management/maturitylevel/create-maturitylevel'"
+                                     [approveLinkLabel]="'Approve maturitylevel'"
+                                     [approveLink]="'home/cma-management/maturitylevel/approve-maturitylevel'"
+                                     [deleteLabel]="'Delete maturitylevel'"
+                                     [endpoint]="'maturitylevel/renew/64/100'"></app-functionality-buttons>
+          <app-custom-datatable
+            [endpoint]="endpoint"
+            [hasCheckBox]="hasCheckBox"
+            [cols]="cols"
+            [idColumn]="idColumn"
+            [hasShowEntries]="true"
+            [fileName]="'Orders'"
+            [canExport]="true"
+            [filterParams]="'Full Name, Phone Number, Email'"
+            [isFilterPresent]="true"
+            [params]="params"
+            [routeView]="routeView"
+          ></app-custom-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  

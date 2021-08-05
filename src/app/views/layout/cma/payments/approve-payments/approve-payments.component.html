@@ -1,0 +1,31 @@
+<div>
+  <div class="page page-dashboard">
+    <section class="tile">
+      <div class="info-title">
+        <h2>payments</h2>
+      </div>
+      <div class="tile-body">
+        <app-functionality-buttons 
+                                   [approveLabel]="'Verify payment'"
+                                   [endpoint]="'payments/approve'"
+                                   [deleteLabel]="'Delete payments'"
+                                   [endpoint]="'payments/verify/646'"></app-functionality-buttons>
+        <app-custom-datatable
+          [endpoint]="endpoint"
+          [hasCheckBox]="hasCheckBox"
+          [cols]="cols"
+          [idColumn]="idColumn"
+          [hasShowEntries]="true"
+          [fileName]="'Orders'"
+          [canExport]="true"
+          [filterParams]="'Full Name, Phone Number, Email'"
+          [isFilterPresent]="true"
+          [params]="params"
+          [routeView]="routeView"
+        ></app-custom-datatable>
+      </div>
+    </section>
+  </div>
+</div>
+
+

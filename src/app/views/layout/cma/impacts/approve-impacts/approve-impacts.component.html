@@ -1,0 +1,34 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <div class="info-title">
+          <h2>Impacts</h2>
+        </div>
+        <div class="tile-body">
+          <app-functionality-buttons [addLabel]="'Add impacts'"
+                                      [addLink]="'home/cma-management/impacts/create-impacts'"
+                                      [approveLabel]="'Approve impact'"
+                                      [approveLink]="'maturitylevel/approve/64/100'"
+                                     [declineLabel]="'Deactivate'"
+                                     [declineLink]="'maturitylevel/deactivate/64/100'"
+                                     [endpoint]="'maturitylevel/renew/64/100'"></app-functionality-buttons>
+          <app-custom-datatable
+            [endpoint]="endpoint"
+            [hasCheckBox]="hasCheckBox"
+            [cols]="cols"
+            [idColumn]="idColumn"
+            [hasShowEntries]="true"
+            [fileName]="'Orders'"
+            [canExport]="true"
+            [filterParams]="'Full Name, Phone Number, Email'"
+            [isFilterPresent]="true"
+            [params]="params"
+            [routeView]="routeView"
+          ></app-custom-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  

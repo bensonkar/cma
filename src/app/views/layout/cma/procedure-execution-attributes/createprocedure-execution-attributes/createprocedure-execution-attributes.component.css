@@ -1,0 +1,31 @@
+.my_span{
+    color: #FC0810;
+  }
+
+
+
+label {
+
+    font-weight:unset;
+    /* color: #404040; */
+}
+.mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: #ffffff;
+}
+input { 
+  text-transform: uppercase;
+}
+
+/* input.ng-invalid{
+  background-color:#DA5235;
+  color:white;
+}
+
+select.ng-invalid{
+  background-color:#DA5235;
+  color:white;
+} */
+
+.fade.show {
+  opacity: 1;
+}

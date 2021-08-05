@@ -1,0 +1,258 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+               <mat-panel-title>
+                 <h2>Assessment results</h2>
+               </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h4>Assessment Details</h4>
+                </mat-panel-title>
+             </mat-expansion-panel-header>
+             <div>
+              <h6>Overral asssessment score: {{data?.overalAssessmentResult}}</h6>
+              <h6>Maturity Readiness Level: {{data?.maturityLevel.overalReadinessLevel}}</h6>
+              <h6>Maturity name: {{data?.maturityLevel.name}}</h6>
+              <h6>Maturity description: {{data?.maturityLevel.description}}</h6>
+             </div>
+ 
+             <h4>Domains</h4>
+             <table class="table table-bordered" style="background-color: white;">
+               <thead>
+                 <tr>
+                   <th scope="col">Domain name</th>
+                   <th scope="col">Domain score</th>
+                   <th scope="col">Benchmark score</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let assessment of assessmentData">
+                   <td>{{assessment.domainName}}</td>
+                   <td>{{assessment.domainScore}}</td>
+                   <td>{{assessment.domainBenchMarkScore}}</td>
+                 </tr>
+               </tbody>
+             </table>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h4>Assessment Chart</h4>
+                </mat-panel-title>
+             </mat-expansion-panel-header>
+             <div  style="background-color: white;">
+             <canvas baseChart
+             [datasets]="demoradarChartData"
+             [labels]="demoradarChartLabels"
+             [chartType]="radarChartType"
+             [colors]="lineChartColors" 
+             (chartHover)="chartHovered($event)"
+             (chartClick)="chartClicked($event)">
+            </canvas>
+             </div>
+            </mat-expansion-panel>
+          </mat-expansion-panel>
+      </mat-accordion>
+
+      <ng-template #content let-modal class="modal-lg">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Procedure execution</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="recipient-name" class="col-form-label">Observation</label>
+                <textarea   class="form-control"  formControlName="observation"  name="observation" id="observation"></textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="recipient-name" class="col-form-label">Issue Noted</label>
+                <select  name="issue"  formControlName="isIssueNoted" placeholder="Select issue noted"  class="form-control form-select" >
+                  <option></option>
+                  <option>yes</option>
+                  <option>no</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="recipient-name" class="col-form-label">Upload Evidence</label>
+                <input type="file" (change)="fileChange($event)" class="form-control" id="recipient-name">
+              </div>
+            </div>
+            
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="buttonDisabled" (click)="submit()">Save</button>
+        </div>
+      </ng-template>
+                
+    
+        <div class="info-title">
+          <h2>Procedures </h2>
+        </div>
+        <div class="tile-body">
+
+          <div style="float: right;">
+          <button class="btn btn-primary" [disabled]="buttonDisabled" (click)="unPrepare()" >Unprepare</button>
+          <button class="btn btn-primary" [disabled]="buttonDisabled" (click)="prepare()">Prepare</button>
+          <button class="btn btn-primary" [disabled]="buttonDisabled" (click)="openAttribute(attribute)">Check attributes</button>
+          <button class="btn btn-primary"  (click)="openModal(cont)">Review</button>
+          </div>
+
+          <br>
+          <br>
+          <table class="table table-striped table-hover table-bordered" data-checkbox-header="false">
+            <thead>
+              <tr>
+                <th scope="col" data-checkbox="true">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action Status</th>
+                <th scope="col">Score</th>
+                <th scope="col">Execute</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let procedure of procedures">
+                <td data-checkbox="true"> <input type="checkbox" (click)="getExecutionId(procedure.procedureExecution?.id)" value="{{procedure.procedureExecution?.id}}" (click)="pushIds(procedure.procedureExecution?.id)"  [checked]="!checked"></td>
+                <td>{{procedure.procedureName}}</td>
+                <td>{{procedure.procedureDescription}}</td>
+                <td>{{procedure.procedureExecution?.actionStatus}}</td>
+                <td>{{procedure.procedureExecution?.score}}</td>
+                <td><button class="btn btn-info"  (click)="open(content)" (click)="getProcedureId(procedure.id)">Execute</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+         
+          <ng-template #attribute let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Precedure attributes</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="col-sm-3" *ngFor="let attribute of attributes">
+                    <input type="checkbox" id="attribute" name="attribute" (click)="getAttributeId(attribute.id)">
+                    <label for="attribute" class="col-form-label">{{attribute.name}}</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+              <button type="button" class="btn btn-primary" [disabled]="buttonDisabled"  (click)="submitAttributes()">Submit</button>
+            </div>
+          </ng-template>
+
+          <ng-template #cont let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Review</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Review Message:</label>
+                  <textarea class="form-control" [(ngModel)]="model.reviewerStatus" name="reviewerStatus" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+              <button type="button" class="btn btn-primary" [disabled]="buttonDisabled"  (click)="submitReview()">Submit</button>
+            </div>
+          </ng-template>
+
+<!-- <div class="modal fade" id="review" tabindex="-1" aria-labelledby="review" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="review">Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Review Message:</label>
+            <textarea class="form-control" [(ngModel)]="model.reviewerStatus" name="reviewerStatus" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="submitReview()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+          
+
+<!-- <div  class="modal fade" id="modal" #modal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Execute Procedure</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="recipient-name" class="col-form-label">Observation</label>
+              <input type="text" class="form-control"  formControlName="observation" id="recipient-name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="recipient-name" class="col-form-label">Issue Noted</label>
+              <select  name="issue"  formControlName="isIssueNoted" placeholder="Select issue noted"  class="form-control form-select" >
+                <option></option>
+                <option>yes</option>
+                <option>no</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="recipient-name" class="col-form-label">Upload Evidence</label>
+              <input type="file" (change)="fileChange($event)" class="form-control" id="recipient-name">
+            </div>
+          </div>
+          <h2>Precedure attributes</h2>
+          <div class="row">
+            <div class="col-sm-3" *ngFor="let attribute of attributes">
+              <input type="checkbox" id="attribute" name="attribute" (click)="getAttributeId(attribute.id)">
+              <label for="attribute" class="col-form-label">{{attribute.name}}</label>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="submit()">Prepare Procedure</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+            
+        </div>
+      </section>
+    </div>
+  </div>

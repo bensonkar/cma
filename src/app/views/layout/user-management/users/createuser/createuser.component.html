@@ -1,0 +1,303 @@
+<div class="page">
+  <section class="tile">
+    <div class="info-title">
+      <app-back-component></app-back-component>
+      <h2>User</h2>
+    </div>
+    <div class="tile-body">
+<!-- <form> -->
+  <div class="row">
+
+        <!-- <button style="margin:5px;"  type="submit" mat-stroked-button
+        class="save-button pull-right" >Save
+</button> -->
+      <div class="form-group  col-lg-2">
+        <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="rightThumb()">
+          First Finger
+        </button>
+        <!-- <img src="../../assets/finger.jpeg"class="responsive">
+        <img src="../../assets/checked.png"class="responsive"> -->
+
+        <ng-container *ngIf="rightThumbScanned">
+          <img [src]="rightThumbSource" class="responsive">
+          <img src="../../assets/checked.png"class="responsive">
+
+          </ng-container>
+
+    </div>
+
+      <div class=" form-group  col-lg-2">
+        <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="rightIndex()">
+          Second Finger
+        </button>
+        <ng-container *ngIf="rightIndexScanned">
+          <img [src]="rightIndexSource" class="responsive">
+          <img src="../../assets/checked.png"class="responsive">
+
+          </ng-container>
+        </div>
+          <!-- <div class=" form-group  col-lg-2">
+            <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="rightMid()">
+                Right Mid-Finger
+            </button>
+            <ng-container *ngIf="rightMidScanned">
+              <img [src]="rightMidSource" class="responsive">
+              <img src="../../assets/checked.png"class="responsive">
+
+              </ng-container>
+          </div> -->
+            <!-- <div class=" form-group  col-lg-2">
+              <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="rightRing()">
+                Right Ring_Finger
+              </button>
+              <ng-container *ngIf="rightRingScanned">
+                <img [src]="rightRingSource" class="responsive">
+                <img src="../../assets/checked.png"class="responsive">
+
+                </ng-container>
+            </div> -->
+        <!-- <div class=" form-group  col-lg-2">
+          <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="rightPinky()">
+            Right Pinky Finger
+          </button>
+          <ng-container *ngIf="rightPinkyScanned">
+            <img [src]="rightPinkySource" class="responsive">
+            <img src="../../assets/checked.png"class="responsive">
+
+            </ng-container>
+        </div> -->
+  </div>
+  <!-- <div class="row">
+    <div class=" form-group  col-lg-2">
+      <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="leftThumb()">
+        Left Thumb
+      </button>
+      <ng-container *ngIf="leftThumbScanned">
+        <img [src]="leftThumbSource" class="responsive">
+        <img src="../../assets/checked.png"class="responsive">
+
+        </ng-container>
+    </div>
+    <div class=" form-group  col-lg-2">
+      <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="leftIndex()">
+        Left Index
+      </button>
+      <ng-container *ngIf="leftIndexScanned">
+        <img [src]="leftIndexSource" class="responsive">
+        <img src="../../assets/checked.png"class="responsive">
+
+        </ng-container>
+    </div>
+    <div class=" form-group  col-lg-2">
+      <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="leftMid()">
+        Left Mid-Finger
+      </button>
+      <ng-container *ngIf="leftMidScanned">
+        <img [src]="leftMidSource" class="responsive">
+        <img src="../../assets/checked.png"class="responsive">
+
+        </ng-container>
+    </div>
+    <div class=" form-group  col-lg-2">
+      <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="leftRing()">
+        Left Ring_Finger
+      </button>
+      <ng-container *ngIf="leftRingScanned">
+        <img [src]="leftRingSource" class="responsive">
+        <img src="../../assets/checked.png"class="responsive">
+
+        </ng-container>
+    </div>
+    <div class=" form-group  col-lg-2">
+      <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="leftPinky()">
+        Left Pinky_Finger
+      </button>
+      <ng-container *ngIf="leftPinkyScanned">
+        <img [src]="leftPinkySource" class="responsive">
+        <img src="../../assets/checked.png"class="responsive">
+
+        </ng-container>
+    </div>
+  </div> -->
+    <!-- <div class="row">
+      <div class="form-group col-sm-2">
+        <button style="margin:5px;" class="save-button btn-block" mat-stroked-button (click)="scanFingerPrint()">
+            Scan FingerPrint
+        </button>
+        <ng-container *ngIf="scanned">
+          <img [src]="imageSource" class="responsive">
+          <img src="../../assets/checked.png"class="responsive">
+
+          </ng-container>
+
+      </div>
+    </div> -->
+    <!-- </form> -->
+      <form [formGroup]="CreateUserWrapper" (ngSubmit)="onCreateUser(createForm)" #createForm="ngForm" role="form">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>Gender<span class="my_span"> *</span></label>
+              <select  name="gender" class="form-control" name="gender" formControlName="gender"
+              required>
+             <option *ngFor="let gen of gender" value="{{gen.word}}">{{gen.word}}</option>
+            </select>
+
+            <div>
+              <span class="text-danger"
+              *ngIf="CreateUserWrapper.get('gender').invalid && CreateUserWrapper.get('gender').touched
+              &&CreateUserWrapper.get('gender').errors.required">
+          Gender is required
+          </span>
+          </div>
+            </div>
+        </div>
+        <h5 style="color: blue;">User Bio Data</h5>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>First Name<span class="my_span"> *</span></label>
+            <input type="text" name="firstName" formControlName="firstName" class="form-control" required="required" >
+            <div>
+              <span class="text-danger"
+              *ngIf="CreateUserWrapper.get('firstName').invalid && CreateUserWrapper.get('firstName').touched
+              &&CreateUserWrapper.get('firstName').errors.required">
+           First Name is required
+        </span>
+        <span class="text-danger" *ngIf="CreateUserWrapper.get('firstName').errors?.pattern">
+          Customer Name must be a valid name with at least 3 characters</span>
+
+        </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Last Name<span class="my_span"> *</span> </label>
+            <input type="text" name="lastName" formControlName="lastName" class="form-control" required >
+                  <div>
+                    <span class="text-danger"
+                    *ngIf="CreateUserWrapper.get('lastName').invalid && CreateUserWrapper.get('lastName').touched
+                    &&CreateUserWrapper.get('lastName').errors.required">
+                Last Name is required
+              </span>
+              <span class="text-danger" *ngIf="CreateUserWrapper.get('lastName').errors?.pattern">
+                Last Name must be a valid name with at least 3 characters</span>
+
+              </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Designation<span class="my_span"> *</span> </label>
+            <input type="text" name="position" formControlName="position" class="form-control" required >
+                  <div>
+                    <span class="text-danger"
+                    *ngIf="CreateUserWrapper.get('position').invalid && CreateUserWrapper.get('position').touched
+                    &&CreateUserWrapper.get('position').errors.required">
+                Position is required
+              </span>
+              <span class="text-danger" *ngIf="CreateUserWrapper.get('position').errors?.pattern">
+                Position Name must be a valid name with at least 3 characters</span>
+
+              </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>National Id <span class="my_span"> *</span> </label>
+            <input type="text"
+                   name="national_id" formControlName="nationalId" class="form-control" pattern="^[0-9]+" required>
+                          <div>
+                            <span class="text-danger"
+                            *ngIf="CreateUserWrapper.get('nationalId').invalid && CreateUserWrapper.get('nationalId').touched
+                            &&CreateUserWrapper.get('nationalId').errors.required">
+                        National ID is required
+                      </span>
+                      <span class="text-danger" *ngIf="CreateUserWrapper.get('nationalId').hasError('pattern')">
+                        National Id must be a valid with numbers only </span>
+
+                      </div>
+
+          </div>
+        </div>
+        <h5 style="padding-top: 13px; color: blue;">Contact Details</h5>
+
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>Email Address<span class="my_span"> *</span></label>
+            <input type="text" formControlName="email" type="email" name="email" class="form-control" required
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" email>
+                   <div *ngIf="email.hasError('pattern')" class="text-danger">Invalid email</div>
+                          <div>
+                            <span class="text-danger"
+                            *ngIf="CreateUserWrapper.get('email').invalid && CreateUserWrapper.get('email').touched
+                            &&CreateUserWrapper.get('email').errors.required">
+                        Email is required
+                      </span>
+                      <span class="text-danger" *ngIf="CreateUserWrapper.get('email').errors?.pattern">
+                        Email must be a valid </span>
+
+                      </div>
+
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Phone Number<span class="my_span"> *</span></label>
+            <input type="tel"   placeholder="254700000000" formControlName="phoneNumber"
+                   name="msisdn" class="form-control" pattern="^[2][5][4][0-9]{9}$" required >
+                   <!-- <div *ngIf="phone.errors.pattern && phone.touched" class="text-danger">Invalid phone number</div>
+                   <div *ngIf="phone.errors.minLength || phone.errors.maxLength" class="text-danger">Invalid phone number length</div> -->
+
+                            <div>
+                              <span class="text-danger"
+                              *ngIf="CreateUserWrapper.get('phoneNumber').invalid && CreateUserWrapper.get('phoneNumber').touched
+                              &&CreateUserWrapper.get('phoneNumber').errors?.pattern">
+                            Phone Number is required
+                        </span>
+                        <span class="text-danger" *ngIf="CreateUserWrapper.get('phoneNumber').errors?.pattern">
+                          Phone Number must be a valid</span>
+
+                        </div>
+
+          </div>
+          <div class="form-group col-md-6">
+            <label>Profile Picture</label>
+            <input [writeFile]="true" type="file" class="form-control"(change)="fileChange($event)"    name="file"  formControlName="file">
+            </div>
+            <div >
+            <span class="text-danger"
+            *ngIf="CreateUserWrapper.controls.file.invalid && (CreateUserWrapper.controls.file.dirty || CreateUserWrapper.controls.file.touched)">
+            <span *ngIf="CreateUserWrapper.controls.file.errors.required">
+              Profile Picture is required.
+            </span>
+            <span *ngIf="CreateUserWrapper.controls.file.errors.extension">
+              That file extenstion is not allowed. Only .jpeg and .png are allowed.
+            </span>
+          </span>
+        </div>
+          </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card mb-3">
+                  <div class="card-header tile-header bg-slategray">User Workgroups</div>
+                  <div class="card-body widget-body row m-20" *ngFor="let role of systemRoles">
+                    <mat-radio-group>
+                      <label class="checkbox">
+                      <input type="checkbox" (change)="onRadioChange(role.id,$event.target.checked,'role')"
+                      (checked)="checkValue('roles',role.id)"
+                      >
+                      {{role.name}}
+
+                      </label>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+
+          <div class="col-md-12 pull-right">
+            <button style="margin:5px;"  type="submit" mat-stroked-button
+                    class="save-button pull-right" >Save
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+</div>
+

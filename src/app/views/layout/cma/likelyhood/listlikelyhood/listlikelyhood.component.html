@@ -1,0 +1,33 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <div class="info-title">
+          <h2>Likely hood</h2>
+        </div>
+        <div class="tile-body">
+          <app-functionality-buttons [addLabel]="'Add Likely Hood'"
+                                     [addLink]="'home/cma-management/likelyhood/create-likelyhood'"
+                                     [approveLinkLabel]="'Approve Likely Hood'"
+                                     [approveLink]="'home/cma-management/likelyhood/approve-likelyhood'"
+                                     [deleteLabel]="'Delete Likely Hood'"
+                                     [endpoint]="'likelyhood/renew/64/100'"></app-functionality-buttons>
+          <app-custom-datatable
+            [endpoint]="endpoint"
+            [hasCheckBox]="hasCheckBox"
+            [cols]="cols"
+            [idColumn]="idColumn"
+            [hasShowEntries]="true"
+            [fileName]="'Orders'"
+            [canExport]="true"
+            [filterParams]="'Full Name, Phone Number, Email'"
+            [isFilterPresent]="true"
+            [params]="params"
+            [routeView]="routeView"
+          ></app-custom-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  

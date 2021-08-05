@@ -1,0 +1,49 @@
+<div class="tile-body">
+    <br>
+    <br>
+    <h4 style="padding-top: 20px;">Add Risk Profile</h4>
+  
+    <form [formGroup]="form" >
+      <div class="row">
+       
+  
+        <div class="form-group col-md-4">
+          <label>Impact<span class="my_span"> *</span></label>
+          <select formControlName="impactId"  name="impactId" placeholder="Select impact Id" class="form-control " required>
+            <option *ngFor="let impact of impacts" value="{{impact.id}}">{{impact.impactName}}</option>
+        </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>LikelyHood<span class="my_span"> *</span></label>
+          <select formControlName="likelyhoodId"  name="likelyhoodId" placeholder="Select likelyhood" class="form-control " required>
+            <option *ngFor="let likelyhood of likelyhoods" value="{{likelyhood.id}}">{{likelyhood.likelyhood}}</option>
+        </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Risk<span class="my_span"> *</span></label>
+          <select formControlName="riskId"  name="riskId" placeholder="Select Risk" class="form-control " required>
+            <option *ngFor="let risk of risks" value="{{risk.id}}">{{risk.riskName}}</option>
+        </select>
+        </div>
+  
+  
+      </div>
+      <div class="row">
+       
+  
+        <div class="form-group col-md-4">
+          <label>Comment<span class="my_span"> *</span></label>
+          <input type="text" formControlName="inputterComments" [readOnly]="isReadOnly" name="inputterComments" class="form-control"
+            required="required">
+        </div>
+        <div class="form-group col-md-4" style="margin-top: 30px; margin-bottom: auto;">
+  
+            <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+            </button>
+      
+          </div>
+  
+      </div>
+     
+    </form>
+  </div>

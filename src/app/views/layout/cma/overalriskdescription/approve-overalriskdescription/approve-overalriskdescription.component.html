@@ -1,0 +1,32 @@
+<div>
+  <div class="page page-dashboard">
+    <section class="tile">
+      <div class="info-title">
+        <h2>Overal Risk Description</h2>
+      </div>
+      <div class="tile-body">
+        <app-functionality-buttons [addLabel]="' Add New Overal Risk Description'"
+                                   [addLink]="'home/cma-management/overalriskdescription/create-overalriskdescription'"
+                                   [approveLabel] ="'Approve'"
+                                   [approveLink]="'overal-risk-description/approve/64/277'"
+                                   [deleteLabel]="'Delete overalriskdescription'"
+                                   [endpoint]="'overal-risk-description/delete/64/277'"></app-functionality-buttons>
+        <app-custom-datatable
+          [endpoint]="endpoint"
+          [hasCheckBox]="hasCheckBox"
+          [cols]="cols"
+          [idColumn]="idColumn"
+          [hasShowEntries]="true"
+          [fileName]="'Orders'"
+          [canExport]="true"
+          [filterParams]="'Full Name, Phone Number, Email'"
+          [isFilterPresent]="true"
+          [params]="params"
+          [routeView]="routeView"
+        ></app-custom-datatable>
+      </div>
+    </section>
+  </div>
+</div>
+
+

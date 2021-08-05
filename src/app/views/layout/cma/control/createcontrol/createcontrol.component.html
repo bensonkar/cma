@@ -1,0 +1,49 @@
+<div class="tile-body">
+  <br>
+  <br>
+  <h4 style="padding-top: 20px;">Add Controls</h4>
+
+  <form [formGroup]="customerModel">
+    <div class="row">
+
+
+      <div class="form-group col-md-6">
+        <label>Control Name<span class="my_span"> *</span></label>
+        <input type="text" formControlName="controlName" [readOnly]="isReadOnly" name="controlName" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Control Standard<span class="my_span"> *</span></label>
+        <input type="text" formControlName="controlStandard" [readOnly]="isReadOnly" name="controlStandard" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Control Standard Clause<span class="my_span"> *</span></label>
+        <input type="text" formControlName="controlStandardClause" [readOnly]="isReadOnly" name="controlStandardClause" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Control Statement<span class="my_span"> *</span></label>
+        <input type="text" formControlName="controlStatement" [readOnly]="isReadOnly" name="controlStatement" class="form-control"
+         >
+
+      </div>
+
+     
+
+
+    </div>
+    <div style="float: right;">
+
+      <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+      </button>
+
+    </div>
+  </form>
+</div>

@@ -1,0 +1,49 @@
+<div class="tile-body">
+    <br>
+    <br>
+    <h4 style="padding-top: 20px;">Update Controls</h4>
+  
+    <form [formGroup]="form">
+      <div class="row">
+  
+  
+        <div class="form-group col-md-6">
+          <label>Control Name<span class="my_span"> *</span></label>
+          <input type="text" formControlName="controlName" name="controlName" class="form-control"
+           >
+  
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label>Control Standard<span class="my_span"> *</span></label>
+          <input type="text" formControlName="controlStandard"  name="controlStandard" class="form-control"
+           >
+  
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label>Control Standard Clause<span class="my_span"> *</span></label>
+          <input type="text" formControlName="controlStandardClause" name="controlStandardClause" class="form-control"
+           >
+  
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label>Control Statement<span class="my_span"> *</span></label>
+          <input type="text" formControlName="controlStatement" name="controlStatement" class="form-control"
+           >
+  
+        </div>
+  
+       
+  
+  
+      </div>
+      <div style="float: right;">
+  
+        <button type="submit" mat-button (click)="submit()" [disabled]="buttonDisabled" class="btn btn-info">Submit
+        </button>
+  
+      </div>
+    </form>
+  </div>

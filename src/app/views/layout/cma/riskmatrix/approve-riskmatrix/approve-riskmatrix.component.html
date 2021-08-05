@@ -1,0 +1,34 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <div class="info-title">
+          <h2>Risk matrix</h2>
+        </div>
+        <div class="tile-body">
+          <app-functionality-buttons [addLabel]="'Add Risk Matrix'"
+                                     [addLink]="'home/cma-management/riskmatrix/create-riskmatrix'"
+                                     [approveLabel]="'Activate Risk Matrix'"
+                                     [approveLink]="'risk-matrix/approve/64/44'"
+                                     [declineLabel]="'Deactivate'"
+                                     [declineLink]="'risk-matrix/approve/64/44'"
+                                     [endpoint]="'risk-matrix/approve/64/44'"></app-functionality-buttons>
+          <app-custom-datatable
+            [endpoint]="endpoint"
+            [hasCheckBox]="hasCheckBox"
+            [cols]="cols"
+            [idColumn]="idColumn"
+            [hasShowEntries]="true"
+            [fileName]="'Orders'"
+            [canExport]="true"
+            [filterParams]="'Full Name, Phone Number, Email'"
+            [isFilterPresent]="true"
+            [params]="params"
+            [routeView]="routeView"
+          ></app-custom-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  

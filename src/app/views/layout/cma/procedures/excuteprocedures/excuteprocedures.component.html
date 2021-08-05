@@ -1,0 +1,46 @@
+<div class="tile-body">
+  <br>
+  <br>
+  <h4 style="padding-top: 20px;">Excute Procedures</h4>
+
+  <form [formGroup]="customerModel" (ngSubmit)="onCreateForm()">
+    <div class="row">
+     
+      <div class="form-group col-md-3">
+        <label>Select Procedure<span class="my_span"> *</span></label>
+        <select formControlName="clients"  name="clients" placeholder="Select Client"  class="form-control " required>
+            <option *ngFor="let client of clients" value="{{client.id}}">{{client.procedureName}}</option>
+        </select>
+    </div>
+      <div class="form-group col-md-3">
+        <label>fileName<span class="my_span"> *</span></label>
+        <input type="text" formControlName="fileName" [readOnly]="isReadOnly" name="fileName" class="form-control"
+          required="required">
+      </div>
+      <div class="form-group col-md-3">
+        <label>isIssueNoted<span class="my_span"> *</span></label>
+        <input type="text" formControlName="isIssueNoted" [readOnly]="isReadOnly" name="isIssueNoted" class="form-control"
+          required="required">
+      </div>
+      <div class="form-group col-md-3">
+        <label>isProcedurePrepared<span class="my_span"> *</span></label>
+        <input type="text" formControlName="isProcedurePrepared" [readOnly]="isReadOnly" name="isProcedurePrepared" class="form-control"
+          required="required">
+      </div>
+      <div class="form-group col-md-3">
+        <label>observation<span class="my_span"> *</span></label>
+        <input type="text" formControlName="observation" [readOnly]="isReadOnly" name="observation" class="form-control"
+          required="required">
+      </div>
+      
+
+
+    </div>
+    <div style="float: right;">
+
+      <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+      </button>
+
+    </div>
+  </form>
+</div>

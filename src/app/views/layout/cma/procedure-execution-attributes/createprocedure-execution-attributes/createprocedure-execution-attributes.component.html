@@ -1,0 +1,27 @@
+<div class="tile-body">
+  <br>
+  <br>
+  <h4 style="padding-top: 20px;">Add Procedure-execution-attributes</h4>
+
+  <form [formGroup]="customerModel" >
+    <div class="row">
+     
+
+      <div class="form-group col-md-12">
+        <label> Name<span class="my_span"> *</span></label>
+        <input type="text" formControlName="name" [readOnly]="isReadOnly" name="name" class="form-control"
+          required="required">
+      </div>
+    
+      
+
+
+    </div>
+    <div style="float: right;">
+
+      <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+      </button>
+
+    </div>
+  </form>
+</div>

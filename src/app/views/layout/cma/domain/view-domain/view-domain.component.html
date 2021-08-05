@@ -1,0 +1,35 @@
+<div class="tile-body">
+    <br>
+    <br>
+    <h4 style="padding-top: 20px;">Update Domain</h4>
+  
+    <form [formGroup]="form">
+      <div class="row">
+  
+  
+        <div class="form-group col-md-6">
+          <label>Domain Name<span class="my_span"> *</span></label>
+          <input type="text" formControlName="domainName"  name="domainName" class="form-control"
+           >
+  
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label>Domain Description<span class="my_span"> *</span></label>
+          <input type="text" formControlName="domainDescription"  name="domainDescription" class="form-control"
+           >
+  
+        </div>
+  
+       
+  
+  
+      </div>
+      <div style="float: right;">
+  
+        <button type="submit" mat-button (click)="submit()" [disabled]="buttonDisabled" class="btn btn-info">Submit
+        </button>
+  
+      </div>
+    </form>
+  </div>

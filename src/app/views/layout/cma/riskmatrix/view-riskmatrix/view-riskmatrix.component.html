@@ -1,0 +1,35 @@
+<div class="tile-body">
+    <br>
+    <br>
+    <h4 style="padding-top: 20px;">Update Risk Matrix</h4>
+  
+    <form [formGroup]="form" >
+      <div class="row">
+       
+  
+        <div class="form-group col-md-4">
+          <label>Risk Level Low Limit<span class="my_span"> *</span></label>
+          <input type="text" formControlName="riskLevelLowLimit" name="riskLevelLowLimit" class="form-control"
+            required="required">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Risk Level Upper Limit<span class="my_span"> *</span></label>
+          <input type="text" formControlName="riskLevelUpperLimit" name="riskLevelUpperLimit" class="form-control"
+            required="required">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Risk Matrix Name<span class="my_span"> *</span></label>
+          <input type="text" formControlName="riskMatrixName" name="riskMatrixName" class="form-control"
+            required="required">
+        </div>
+  
+  
+      </div>
+      <div style="float: right;">
+  
+        <button type="submit" mat-button [disabled]="buttonDisabled" (click)="submit()" class="btn btn-info">Submit
+        </button>
+  
+      </div>
+    </form>
+  </div>

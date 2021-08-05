@@ -1,0 +1,41 @@
+<div class="tile-body tile">
+  <br>
+  <br>
+  <h4 style="padding-top: 20px;">Create New assessment</h4>
+
+  <form [formGroup]="form">
+    <div class="row">
+
+
+      <div class="form-group col-md-6">
+        <label>Assessment Name<span class="my_span"> *</span></label>
+        <input type="text" formControlName="assessmentName" [readOnly]="isReadOnly" name="assessmentName" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Start Date<span class="my_span"> *</span></label>
+        <input type="date" formControlName="startDate" [readOnly]="isReadOnly" name="startDate" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>End Date<span class="my_span"> *</span></label>
+        <input type="date" formControlName="endDate" [readOnly]="isReadOnly" name="endDate" class="form-control"
+         >
+
+      </div>
+     
+
+
+    </div>
+    <div style="float: right;">
+
+      <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+      </button>
+
+    </div>
+  </form>
+</div>

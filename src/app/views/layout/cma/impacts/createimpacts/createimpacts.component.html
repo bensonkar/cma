@@ -1,0 +1,43 @@
+<div class="tile-body">
+  <br>
+  <br>
+  <h4 style="padding-top: 20px;">Add Impacts</h4>
+
+  <form [formGroup]="customerModel">
+    <div class="row">
+
+
+      <div class="form-group col-md-6">
+        <label>Name<span class="my_span"> *</span></label>
+        <input type="text" formControlName="name" [readOnly]="isReadOnly" name="name" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>rating<span class="my_span"> *</span></label>
+        <input type="number" formControlName="rating" [readOnly]="isReadOnly" name="rating" class="form-control"
+         >
+
+      </div>
+
+      <div class="form-group col-md-6" *ngFor="let criterias of getCriteriasFormControls(); let i = index">
+        <label>criterias {{i}}<span class="my_span"> *</span></label>
+        <input type="text" [formControl]="criterias" [readOnly]="isReadOnly"  class="form-control"
+         > <button class="btn btn-danger" (click)="removeCriterias(i)">Remove criteria</button>
+          
+          <br> 
+          <br> 
+          <button class="btn btn-primary" (click)="addCriterias()">Add Another Criteria</button>
+      </div>
+
+
+    </div>
+    <div style="float: right;">
+
+      <button type="submit" mat-button (click)="onCreateForm()" class="btn btn-info">Submit
+      </button>
+
+    </div>
+  </form>
+</div>

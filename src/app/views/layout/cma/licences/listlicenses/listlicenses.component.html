@@ -1,0 +1,33 @@
+<div>
+    <div class="page page-dashboard">
+      <section class="tile">
+        <div class="info-title">
+          <h2>Customer licenses</h2>
+        </div>
+        <div class="tile-body">
+          <app-functionality-buttons [addLabel]="'Generate License'"
+                                     [addLink]="'home/cma-management/licenses/create-license'"
+                                     [approveLinkLabel]="'Activate License'"
+                                     [approveLink]="'home/cma-management/licenses/activate-license'"
+                                     [deleteLabel]="'Renew License'"
+                                     [endpoint]="'licence/renew/64/100'"></app-functionality-buttons>
+          <app-custom-datatable
+            [endpoint]="endpoint"
+            [hasCheckBox]="hasCheckBox"
+            [cols]="cols"
+            [idColumn]="idColumn"
+            [hasShowEntries]="true"
+            [fileName]="'Orders'"
+            [canExport]="true"
+            [filterParams]="'Full Name, Phone Number, Email'"
+            [isFilterPresent]="true"
+            [params]="params"
+            [routeView]="routeView"
+          ></app-custom-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+  
+  
+  

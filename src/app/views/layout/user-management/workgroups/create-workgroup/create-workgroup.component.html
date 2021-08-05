@@ -1,0 +1,77 @@
+<div class="page">
+  <section class="tile">
+    <div class="info-title">
+      <app-back-component></app-back-component>
+      <h2>Workgroup</h2>
+    </div>
+    <div class="tile-body">
+      <form [formGroup]="Workgroups" (ngSubmit)="onCreate(workgroupsForm)" #workgroupsForm="ngForm" role="form">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>Workgroup Name <span class="my_span"> *</span></label>
+            <input type="text" class="form-control" formControlName="name" name="name" pattern="^(?=.*[A-z0-9].*[A-z0-9])[0-9A-z-'.\s]{3,}$"
+                    class="form-control" required >
+                    <div>
+                      <span class="text-danger"
+                      *ngIf="Workgroups.get('name').invalid && Workgroups.get('name').touched
+                      &&Workgroups.get('name').errors.required">
+                  Workgroup Name is required
+                </span>
+                <span class="text-danger" *ngIf="Workgroups.get('name').errors?.pattern">
+                  Workgroup Name must be a valid name with at least 3 characters</span>
+
+                </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Workgroup Description <span class="my_span"> *</span></label>
+            <input type="text" class="form-control" formControlName="description" name="description" name="description" pattern="^(?=.*[A-z0-9].*[A-z0-9])[0-9A-z-'.\s]{6,}$"
+                   class="form-control"  required>
+                   <div>
+                    <span class="text-danger"
+                    *ngIf="Workgroups.get('description').invalid && Workgroups.get('description').touched
+                    &&Workgroups.get('description').errors.required">
+                Description is required
+              </span>
+              <span class="text-danger" *ngIf="Workgroups.get('description').errors?.pattern">
+                Description must be a valid name with at least 6 characters</span>
+
+              </div>
+          </div>
+        </div>
+              <div>
+          <h3 style="font-weight: 600; color:#0085D4; padding: 15px">Roles</h3>
+      </div>
+        <div class="row">
+
+    <div class="col-md-6" *ngFor="let ent of roles">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title custom-font"><strong>{{ent.title}}</strong>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6" *ngFor="let permi of ent.permissions">
+                    <div class="checkbox">
+
+                        <input type="checkbox" value="{{permi.name}}"
+                        (change)="onRadioChange(permi.name,$event.target.checked,'role')" [name]="permi.name"
+                        (checked)="checkValue('roles',permi.id)"/>
+                        <label>{{permi.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 pull-right">
+            <button style="margin:5px;"  type="submit" mat-stroked-button
+                    class="save-button pull-right">Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
